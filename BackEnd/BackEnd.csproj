@@ -15,5 +15,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConferenceDTO\ConferenceDTO.csproj" />
+  </ItemGroup>
+
 
 </Project>
