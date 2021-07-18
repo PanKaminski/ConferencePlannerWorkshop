@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BackEnd.Data
 {
-    public class Class
+    public class Attendee : ConferenceDTO.Attendee
     {
+        public virtual ICollection<SessionAttendee> SessionsAttendees { get; set; }
     }
 }

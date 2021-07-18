@@ -2,7 +2,7 @@
 
 namespace ConferenceDTO
 {
-    class Attendee
+    public class Attendee
     {
         public int Id { get; set; }
 
