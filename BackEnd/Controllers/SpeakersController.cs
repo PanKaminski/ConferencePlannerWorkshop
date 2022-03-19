@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Data;
 using BackEnd.Infrastructure;
-using Speaker = BackEnd.Data.Speaker;
 
 namespace BackEnd.Controllers
 {

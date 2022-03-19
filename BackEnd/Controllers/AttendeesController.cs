@@ -76,9 +76,10 @@ namespace BackEnd.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult<AttendeeResponse>> AddSession(string username, int sessionId)
         {
-            var attendee = await _context.Attendees.Include(a => a.SessionsAttendees)
-                                                .ThenInclude(sa => sa.Session)
-                                              .SingleOrDefaultAsync(a => a.UserName == username);
+            var attendee = await _context.Attendees
+                .Include(a => a.SessionsAttendees)
+                .ThenInclude(sa => sa.Session)
+                .SingleOrDefaultAsync(a => a.UserName == username);
 
             if (attendee == null)
             {
