@@ -20,6 +20,8 @@ namespace ConferencePlanner
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IAdminService, AdminService>();
+
             services.AddRazorPages();
 
             services.AddHttpClient<IApiClient, ApiClient>(client =>
@@ -47,6 +49,7 @@ namespace ConferencePlanner
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
