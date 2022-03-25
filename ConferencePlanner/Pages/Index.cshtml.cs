@@ -6,18 +6,25 @@ using System.Threading.Tasks;
 using ConferenceDTO;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ConferencePlanner.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConferencePlanner.Pages
 {
     public class IndexModel : PageModel
     {
         protected readonly IApiClient apiClient;
-        public bool IsAdmin { get; set; }
 
         public IndexModel(IApiClient apiClient)
         {
             this.apiClient = apiClient;
         }
+
+        public bool IsAdmin { get; set; }
+
+        [TempData]
+        public string Message { get; set; }
+
+        public bool ShowMessage => !string.IsNullOrEmpty(Message);
 
         public IEnumerable<IGrouping<DateTimeOffset?, SessionResponse>> Sessions { get; set; }
 
