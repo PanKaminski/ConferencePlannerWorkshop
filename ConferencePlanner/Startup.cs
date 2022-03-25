@@ -22,7 +22,18 @@ namespace ConferencePlanner
         {
             services.AddSingleton<IAdminService, AdminService>();
 
-            services.AddRazorPages();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                {
+                    policy.RequireAuthenticatedUser().RequireIsAdminClaim();
+                });
+            });
+
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Admin", "Admin");
+            });
 
             services.AddHttpClient<IApiClient, ApiClient>(client =>
             {

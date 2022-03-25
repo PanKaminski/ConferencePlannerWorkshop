@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ConferenceDTO;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +12,7 @@ namespace ConferencePlanner.Pages
     public class IndexModel : PageModel
     {
         protected readonly IApiClient apiClient;
+        public bool IsAdmin { get; set; }
 
         public IndexModel(IApiClient apiClient)
         {
@@ -25,6 +27,8 @@ namespace ConferencePlanner.Pages
 
         public async Task OnGet(int day = 0)
         {
+            IsAdmin = this.User.IsAdmin();
+
             var sessions = await this.apiClient.GetSessionsAsync();
 
             var startDate = sessions.Min(s => s.StartTime?.Date);
